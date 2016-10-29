@@ -1,0 +1,16 @@
+                                                          Table "public.items"
+   Column    |            Type             |                     Modifiers                      | Storage  | Stats target | Description 
+-------------+-----------------------------+----------------------------------------------------+----------+--------------+-------------
+ id          | integer                     | not null default nextval('items_id_seq'::regclass) | plain    |              | 
+ name        | character varying           | not null                                           | extended |              | 
+ description | character varying           |                                                    | extended |              | 
+ start_time  | timestamp without time zone |                                                    | plain    |              | 
+ user_id     | integer                     | not null                                           | plain    |              | 
+Indexes:
+    "items_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "items_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+Referenced by:
+    TABLE "bids" CONSTRAINT "bids_item_id_fkey" FOREIGN KEY (item_id) REFERENCES items(id)
+Has OIDs: no
+
