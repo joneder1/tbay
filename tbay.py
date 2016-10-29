@@ -72,28 +72,30 @@ baseball = Item(name="Autographed baseball", description="Baseball signed by Bar
 session.add(baseball)
 session.commit()
 
+#is this the best way to add all of these bids?
+
 bid1 = Bid(price="50.00", bidder=jon, Item=baseball)
 session.add(bid1)
 session.commit()
 
 bid2 = Bid(price="75.00", bidder=jon, Item=baseball)
-session.add(bid1)
+session.add(bid2)
 session.commit()
 
 bid3 = Bid(price="55.00", bidder=mike, Item=baseball)
-session.add(bid1)
+session.add(bid3)
 session.commit()
 
 bid4 = Bid(price="85.00", bidder=mike, Item=baseball)
-session.add(bid1)
+session.add(bid4)
 session.commit()
 
 bid5 = Bid(price="40.00", bidder=ryan, Item=baseball)
-session.add(bid1)
+session.add(bid5)
 session.commit()
 
 bid6 = Bid(price="60.00", bidder=ryan, Item=baseball)
-session.add(bid1)
+session.add(bid6)
 session.commit()
 
 
