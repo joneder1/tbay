@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine 
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -72,8 +72,6 @@ baseball = Item(name="Autographed baseball", description="Baseball signed by Bar
 session.add(baseball)
 session.commit()
 
-#is this the best way to add all of these bids?
-
 bid1 = Bid(price="50.00", bidder=jon, Item=baseball)
 session.add(bid1)
 session.commit()
@@ -98,5 +96,23 @@ bid6 = Bid(price="60.00", bidder=ryan, Item=baseball)
 session.add(bid6)
 session.commit()
 
+#Perform a query to find out which user placed the highest bid
 
+def highest_bid(item_id):
+    #query item name where item id equals bid item id
+    item = session.query(Item.name).filter(Item.id == item_id).first()
+    #query bidder id and their bid prices, sort by descending, return highest
+    highest_bid = session.query(Bid.bidder_id, Bid.price).\
+        filter(Bid.item_id == item_id).\
+        order_by(Bid.price.desc()).first()
+    #query user name where user id matches highest bidder user id
+    winning_bidder = session.query(User.username).filter(User.id == highest_bid[0])
+    template = "The '{0}' auction has been won by {1} with a bid of ${2}.".format(
+        item[0], winning_bidder[0], highest_bid[1])
+    return template
 
+#get the highest item id #1
+print(highest_bid(1))
+
+#print("Found '{}' in these messages".format(arguments['string']))
+#item[0], winning_bidder[0], highest_bid[1])
