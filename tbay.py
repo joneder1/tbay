@@ -99,7 +99,7 @@ session.commit()
 #Perform a query to find out which user placed the highest bid
 
 def highest_bid(item_id):
-    #query item name where item id equals bid item id
+    #query item name where item id is # assigned
     item = session.query(Item.name).filter(Item.id == item_id).first()
     #query bidder id and their bid prices, sort by descending, return highest
     highest_bid = session.query(Bid.bidder_id, Bid.price).\
@@ -115,4 +115,3 @@ def highest_bid(item_id):
 print(highest_bid(1))
 
 #print("Found '{}' in these messages".format(arguments['string']))
-#item[0], winning_bidder[0], highest_bid[1])
