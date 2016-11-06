@@ -108,10 +108,9 @@ def winner(item_id):
     #query user name where user id matches highest bidder user id
     winning_bidder = session.query(User.username).filter(User.id == highest_bid[0])
     template = "The '{0}' auction has been won by {1} with a bid of ${2}.".format(
-        item[0], winning_bidder[0], highest_bid[1])
+        item[0], winning_bidder[0][0], highest_bid[1])
     return template
 
 #get the highest item id #1
 print(winner(1))
 
-#print("Found '{}' in these messages".format(arguments['string']))
